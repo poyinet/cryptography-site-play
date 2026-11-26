@@ -1,0 +1,27 @@
+{
+  "name": "密码学探索馆 · 游戏厅",
+  "short_name": "密码游戏",
+  "description": "119 款密码学游戏：从凯撒、恩尼格玛到 BB84、后量子迁移，打开即玩。",
+  "lang": "zh-CN",
+  "dir": "ltr",
+  "id": "./",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#faf9f5",
+  "theme_color": "#faf9f5",
+  "icons": [
+    {
+      "src": "assets/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "assets/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
