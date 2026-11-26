@@ -19,9 +19,8 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          mkdir -p dist
-          gh release download site-2026-11-26 --pattern site.zip --dir dist --clobber
-          mkdir -p site
+          mkdir -p dist site
+          gh release download site-2026-11-26 --repo "${{ github.repository }}" --pattern site.zip --dir dist --clobber
           unzip -q dist/site.zip -d site
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
