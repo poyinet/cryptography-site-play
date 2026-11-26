@@ -1,0 +1,26 @@
+name: import-build
+on:
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  import:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Fetch production build
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p /tmp/build
+          gh release download site-2026-11-26 --repo "${{ github.repository }}" --pattern site.zip --dir /tmp/build --clobber
+          unzip -q /tmp/build/site.zip -d /tmp/build/site
+          rm -rf /tmp/build/site/.github
+      - name: Import into repository
+        run: |
+          rsync -a --delete --exclude='.git' --exclude='.github' /tmp/build/site/ ./
+          git config user.name "poyinet"
+          git config user.email "poyinet@users.noreply.github.com"
+          git add -A
+          git diff --cached --quiet || git commit -m "site: import production build ${{ github.run_id }}"
+          git push
